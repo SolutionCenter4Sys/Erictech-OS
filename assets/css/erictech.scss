@@ -137,22 +137,67 @@
 }
 
 // ============================================
-// 2. DARK MODE
+// 2. DARK MODE — CheckIn-Audiencias-Banco DS
+// Tokens: design-tokens.css v2.0 (Dark Edition · Identidade Foursys)
+// dark-900 #0C1021 · dark-700 #161D2E · dark-600 #1E2A3A · dark-950 #060B14
 // ============================================
 .body--dark {
-  --surface-primary:   #1E1B4B;
-  --surface-secondary: #0B1120;
-  --surface-elevated:  #0B1120;
-  --surface-subtle:    #020617;
-  --border-default:    #1E293B;
-  --border-soft:       #1E293B;
-  --text-primary:      #F9FAFB;
-  --text-secondary:    #CBD5E1;
-  --text-muted:        #64748B;
-  --text-inverse:      #020617;
-  --accent:            #22C55E;
-  --accent-soft:       #052E16;
-  --gradient-brand:    var(--gradient-brand-dark);
+  // ── Superfícies (CheckIn DS dark palette) ──
+  --surface-primary:   #0C1021;   // dark-900 — fundo principal
+  --surface-secondary: #161D2E;   // dark-700 — cards
+  --surface-elevated:  #161D2E;   // dark-700 — cards/dialogs
+  --surface-subtle:    #111827;   // dark-800 — fundo alternativo
+  --surface-sidebar:   #060B14;   // dark-950 — sidebar (quase preto)
+  --surface-raised:    #1E2A3A;   // dark-600 — raised/hover
+
+  // ── Bordas (CheckIn DS) ──
+  --border-default:    #374155;   // dark-400 — borda padrão
+  --border-soft:       #263347;   // dark-500 — borda suave
+  --border-hover:      #4A5568;   // dark-300 — borda hover
+
+  // ── Texto (WCAG AAA em dark) ──
+  --text-primary:      #FFFFFF;   // 16.2:1
+  --text-secondary:    #E2E8F0;   // 12.1:1
+  --text-muted:        #94A3B8;   //  6.4:1
+  --text-inverse:      #0C1021;
+  --text-link:         var(--accent);
+
+  // ── Accent verde (brighter para dark) ──
+  --accent:            #22C55E;   // green-500 vibrante em dark
+  --accent-dark:       #16A34A;
+  --accent-light:      #4ADE80;
+  --accent-soft:       rgba(34, 197, 94, 0.15); // green-bg CheckIn
+
+  // ── Cores sólidas brand em dark ──
+  --brand:             #6366F1;   // indigo-500 (mais brilhante em dark)
+  --brand-soft:        rgba(99, 102, 241, 0.15);
+
+  // ── Gradiente hero (dark variant) ──
+  --gradient-brand:    linear-gradient(135deg, #4C1D95 0%, #7C3AED 40%, #22C55E 100%);
+
+  // ── Status OS vibrantes em dark (CheckIn DS pattern) ──
+  --status-draft:       #94A3B8;                  // slate-400
+  --status-planned:     #60A5FA;                  // blue-400 vibrante
+  --status-scheduled:   #FBBF24;                  // amber-400
+  --status-in-progress: #4ADE80;                  // green-400 vibrante
+  --status-completed:   #818CF8;                  // indigo-400 vibrante
+  --status-cancelled:   #F87171;                  // red-400 vibrante
+  --status-suspended:   #C084FC;                  // purple-400 vibrante
+
+  // ── Sombras dark (glow do brand gradient) ──
+  --shadow-soft:  0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-sm:    0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md:    0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-glow:  0 0 20px rgba(99, 102, 241, 0.25); // indigo glow
+  --shadow-glow-accent: 0 0 20px rgba(34, 197, 94, 0.25); // green glow
+
+  // ── Neutrals aliases ──
+  --color-neutral-100: var(--surface-subtle);
+  --color-neutral-200: var(--border-default);
+  --color-neutral-300: #4A5568;
+  --color-neutral-500: #94A3B8;
+  --color-neutral-900: #FFFFFF;
 }
 
 // ============================================
@@ -179,16 +224,25 @@ body {
     font-weight: 700;
     letter-spacing: 0.08em;
     font-size: var(--text-h2);
-    color: var(--text-inverse);
+    color: #FFFFFF;
+  }
+
+  // Todos os botões/ícones do header — branco forçado
+  .q-btn,
+  .q-btn .q-icon,
+  .q-btn i,
+  .q-btn svg,
+  .q-btn .material-icons,
+  .q-btn .notranslate {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
   }
 
   .q-btn {
     border-radius: var(--radius-pill) !important;
-    color: rgba(255, 255, 255, 0.85);
 
     &:hover {
       background: rgba(255, 255, 255, 0.12) !important;
-      color: #FFFFFF;
     }
   }
 }
@@ -584,5 +638,206 @@ body {
       outline: none !important;
       box-shadow: none !important;
     }
+  }
+}
+
+// ============================================
+// 21. DARK MODE — OVERRIDES DE COMPONENTES
+// Referência visual: CheckIn-Audiencias-Banco DS v2.0
+// dark-950 #060B14 sidebar | dark-900 #0C1021 body
+// dark-700 #161D2E cards   | dark-600 #1E2A3A raised
+// ============================================
+.body--dark {
+  // ── Base ─────────────────────────────────
+  background: var(--surface-primary) !important;
+  color: var(--text-primary) !important;
+
+  // ── HEADER: laranja CheckIn DS (#FF6600) em dark mode ──
+  .erictech-header {
+    background: #FF6600 !important;
+    border-bottom: 2px solid #E55C00 !important;
+    box-shadow: 0 2px 16px rgba(255, 102, 0, 0.4) !important;
+
+    .q-toolbar__title { color: #FFFFFF !important; }
+
+    .q-btn,
+    .q-btn .q-icon,
+    .q-btn i,
+    .q-btn svg,
+    .q-btn .material-icons,
+    .q-btn .notranslate,
+    .q-btn span {
+      color: #FFFFFF !important;
+      fill: #FFFFFF !important;
+    }
+
+    .q-btn {
+      &:hover { background: rgba(255, 255, 255, 0.15) !important; }
+    }
+  }
+
+  // ── SIDEBAR: dark-950 #060B14 (CheckIn pattern) ──
+  .erictech-drawer {
+    background: #060B14 !important;
+    border-right: 1px solid #1E2A3A !important;
+
+    .sidebar-logo {
+      border-bottom-color: #1E2A3A !important;
+      .sidebar-logo-text { color: #E2E8F0 !important; }
+    }
+
+    .erictech-nav-item {
+      color: #94A3B8 !important; // text-tertiary
+      .q-icon { color: #64748B !important; }
+
+      &:hover {
+        background: rgba(255, 102, 0, 0.07) !important; // orange-muted sutil
+        color: #E2E8F0 !important;
+        .q-icon { color: #FF7A00 !important; } // orange-400 no hover
+      }
+    }
+
+    .erictech-nav-active {
+      // Orange CheckIn DS (#FF6600) — igual à referência visual
+      background: rgba(255, 102, 0, 0.12) !important;
+      border-left: 3px solid #FF6600 !important;
+      color: #FF7A00 !important;   // orange-400
+      font-weight: 600;
+      .q-icon { color: #FF6600 !important; }
+    }
+
+    // Dot do logo vira laranja em dark (identidade CheckIn)
+    .sidebar-logo-dot { color: #FF6600 !important; }
+
+    .sidebar-footer {
+      border-top-color: #1E2A3A !important;
+      background: #060B14 !important;
+      .sidebar-dark-switch { color: #64748B !important; }
+      .sidebar-dark-label  { color: #94A3B8 !important; }
+    }
+  }
+
+  // ── BODY: fundo #0C1021 já aplicado via tokens ──
+
+  // ── CARDS: dark-700 #161D2E claramente elevados sobre o body ──
+  .q-card {
+    background: #161D2E !important;
+    border: 1px solid #263347 !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
+
+    &:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important; }
+  }
+
+  // ── KPI CARDS: borda accent verde no hover ──
+  .erictech-kpi-card {
+    background: #161D2E !important;
+    border: 1px solid #263347 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
+
+    &:hover {
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(34,197,94,0.15) !important;
+    }
+
+    .text-h5 { color: #FFFFFF !important; }
+    .text-caption { color: #94A3B8 !important; }
+  }
+
+  // ── TABELA ──
+  .erictech-table {
+    .q-table__top,
+    thead th {
+      background: #1E3A5F !important;
+      color: #FFFFFF !important;
+      border-bottom: 2px solid #143350 !important;
+    }
+
+    tbody tr {
+      &:nth-child(even) { background: #111827 !important; }
+      &:hover { background: #1E2A3A !important; }
+    }
+
+    td {
+      color: #E2E8F0 !important;
+      border-bottom-color: #263347 !important;
+    }
+  }
+
+  // ── INPUTS ──
+  .q-field--outlined .q-field__control {
+    background: #161D2E !important;
+    &::before { border-color: #374155 !important; }
+    &:hover::before { border-color: #4A5568 !important; }
+  }
+
+  .q-field--focused .q-field__control::after {
+    border-color: var(--accent) !important;
+  }
+
+  .q-field--focused .q-field__label { color: var(--accent) !important; }
+
+  .q-field__native,
+  .q-field__input  { color: #FFFFFF !important; }
+  .q-field__label  { color: #94A3B8 !important; }
+
+  // ── CHIPS/BADGES ──
+  .q-chip { border: 1px solid #374155 !important; }
+
+  // ── MENUS E DROPDOWNS ──
+  .q-menu {
+    background: #1E2A3A !important;
+    border: 1px solid #374155 !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6) !important;
+  }
+
+  .q-item {
+    color: #E2E8F0 !important;
+    &:hover { background: #263347 !important; }
+  }
+
+  .q-separator { background: #263347 !important; }
+
+  // ── DIALOG ──
+  .q-dialog .q-card {
+    background: #161D2E !important;
+    border: 1px solid #374155 !important;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.7) !important;
+  }
+
+  // ── BOTÕES (glow em dark) ──
+  .q-btn.bg-primary {
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4) !important;
+    &:hover { box-shadow: 0 8px 24px rgba(99, 102, 241, 0.5) !important; }
+  }
+
+  .q-btn.bg-secondary,
+  .q-btn.bg-accent {
+    box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3) !important;
+    &:hover { box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4) !important; }
+  }
+
+  // ── PAGE LAYOUT ──
+  .page-container { background: transparent; }
+  .page-title { color: #FFFFFF !important; }
+
+  // ── AUTH CARD em dark ──
+  .auth-card { border: 1px solid #374155 !important; }
+
+  // ── CHART BARS ──
+  .chart-bar-bg  { background: #263347 !important; }
+  .chart-label   { color: #94A3B8 !important; }
+  .chart-value   { color: #FFFFFF !important; }
+
+  // ── SCROLLBAR ──
+  ::-webkit-scrollbar-track { background: #060B14 !important; }
+  ::-webkit-scrollbar-thumb {
+    background: #374155 !important;
+    &:hover { background: #4A5568 !important; }
+  }
+
+  // ── SELECTION ──
+  ::selection {
+    background: rgba(34, 197, 94, 0.3);
+    color: #fff;
   }
 }
