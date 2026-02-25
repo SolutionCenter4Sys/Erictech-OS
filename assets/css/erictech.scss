@@ -1,6 +1,7 @@
 // ============================================
-// Erictech Design System — Global Styles
-// Modelo PG V2 — Tokens + Componentes
+// Erictech — Design System Global Styles
+// Baseado no Foursys Design Toolkit (design-toolkit-17-12.md)
+// Tokens estruturais Foursys + Identidade de marca Erictech
 // ============================================
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -9,52 +10,70 @@
 // 1. DESIGN TOKENS (CSS Custom Properties)
 // ============================================
 :root {
-  // --- Primary (Navy Erictech) ---
+  // --- Erictech Brand — Primary (Navy) ---
   --color-primary-900: #061424;
   --color-primary-800: #0D2137;
   --color-primary-700: #143352;
   --color-primary-500: #1B3A5C;
   --color-primary-400: #2A5A8C;
   --color-primary-100: #E8EEF4;
+  --color-primary-soft: #F1F5F9;
 
-  // --- Accent (Verde Erictech) ---
-  --color-accent-600: #388E3C;
-  --color-accent-500: #4CAF50;
-  --color-accent-400: #66BB6A;
-  --color-accent-100: #E8F5E9;
+  // --- Erictech Brand — Accent (Verde, alinhado Foursys) ---
+  --color-accent-600: #16A34A;
+  --color-accent-500: #18C964;
+  --color-accent-400: #4ADE80;
+  --color-accent-soft: #E6FDF1;
 
-  // --- Neutrals ---
+  // --- Foursys Surface System ---
+  --surface-primary: #F5F3FF;
+  --surface-secondary: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --surface-subtle: #F9FAFB;
+
+  // --- Foursys Border Tokens ---
+  --border-default: #E2E8F0;
+  --border-soft: #EEF2FF;
+
+  // --- Neutrals (legado — aliases para compatibilidade) ---
   --color-neutral-50: #FFFFFF;
-  --color-neutral-100: #F5F7FA;
-  --color-neutral-200: #E2E8F0;
+  --color-neutral-100: var(--surface-subtle);
+  --color-neutral-200: var(--border-default);
   --color-neutral-300: #CBD5E1;
-  --color-neutral-500: #6B7280;
+  --color-neutral-500: #64748B;
   --color-neutral-700: #374151;
-  --color-neutral-900: #1A1A2E;
+  --color-neutral-900: #0F172A;
 
-  // --- Semantic ---
-  --color-success: #4CAF50;
+  // --- Foursys Text Tokens ---
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --text-inverse: #FFFFFF;
+  --text-link: var(--color-accent-500);
+
+  // --- Foursys Status ---
+  --color-success: #16A34A;
   --color-warning: #F59E0B;
-  --color-error: #EF4444;
-  --color-info: #3B82F6;
+  --color-error: #DC2626;
+  --color-info: #2563EB;
 
   // --- Status OS ---
-  --status-draft: #9CA3AF;
-  --status-planned: #3B82F6;
+  --status-draft: #94A3B8;
+  --status-planned: #2563EB;
   --status-scheduled: #F59E0B;
-  --status-in-progress: #4CAF50;
+  --status-in-progress: #18C964;
   --status-completed: #0D2137;
-  --status-cancelled: #EF4444;
+  --status-cancelled: #DC2626;
   --status-suspended: #8B5CF6;
 
   // --- Priority ---
-  --priority-low: #6B7280;
-  --priority-medium: #3B82F6;
+  --priority-low: #64748B;
+  --priority-medium: #2563EB;
   --priority-high: #F59E0B;
-  --priority-critical: #EF4444;
+  --priority-critical: #DC2626;
 
-  // --- Typography ---
-  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  // --- Typography (Inter — Foursys standard) ---
+  --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   --text-display: 2rem;
@@ -66,13 +85,7 @@
   --text-caption: 0.75rem;
   --text-overline: 0.6875rem;
 
-  --text-primary: var(--color-neutral-900);
-  --text-secondary: var(--color-neutral-700);
-  --text-muted: var(--color-neutral-500);
-  --text-inverse: var(--color-neutral-50);
-  --text-link: var(--color-accent-500);
-
-  // --- Spacing (4px base) ---
+  // --- Foursys Spacing (4-8-12-16-24-32 scale) ---
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -83,18 +96,29 @@
   --space-10: 40px;
   --space-12: 48px;
 
-  // --- Border Radius ---
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-full: 9999px;
+  // --- Foursys Border Radius ---
+  // XS 6px | SM 8px | MD 12px | LG 20px | Pill 999px
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  // legado
+  --radius-xl: 20px;
+  --radius-full: 999px;
 
-  // --- Shadows ---
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
-  --shadow-glow: 0 0 20px rgba(76, 175, 80, 0.15);
+  // --- Foursys Shadows ---
+  --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 18px 45px rgba(15, 23, 42, 0.10);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: var(--shadow-soft);
+  --shadow-glow: 0 0 20px rgba(24, 201, 100, 0.18);
+
+  // --- Foursys Brand Gradient ---
+  --gradient-brand: linear-gradient(135deg, #9A1BFF 0%, #7B1CE5 40%, #4F46E5 100%);
+  --gradient-brand-dark: linear-gradient(135deg, #4C1D95 0%, #7C3AED 40%, #22C55E 100%);
+  --gradient-navy: linear-gradient(135deg, var(--color-primary-900) 0%, var(--color-primary-800) 40%, var(--color-primary-500) 100%);
 
   // --- Z-Index ---
   --z-dropdown: 100;
@@ -110,19 +134,40 @@
 }
 
 // ============================================
-// 2. GLOBAL RESET & BASE
+// 2. DARK MODE
+// ============================================
+.body--dark {
+  --surface-primary: #111827;
+  --surface-secondary: #0B1120;
+  --surface-elevated: #0B1120;
+  --surface-subtle: #020617;
+  --border-default: #1E293B;
+  --border-soft: #1E293B;
+  --text-primary: #F9FAFB;
+  --text-secondary: #CBD5E1;
+  --text-muted: #64748B;
+  --text-inverse: #020617;
+  --color-accent-500: #22C55E;
+  --color-accent-soft: #052E16;
+  --color-neutral-100: var(--surface-subtle);
+  --color-neutral-200: var(--border-default);
+  --gradient-brand: var(--gradient-brand-dark);
+}
+
+// ============================================
+// 3. GLOBAL RESET & BASE
 // ============================================
 body {
   font-family: var(--font-sans);
   font-size: var(--text-body);
   color: var(--text-primary);
-  background: var(--color-neutral-100);
+  background: var(--surface-subtle);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 // ============================================
-// 3. LAYOUT — HEADER
+// 4. LAYOUT — HEADER
 // ============================================
 .erictech-header {
   background: var(--color-primary-800) !important;
@@ -137,11 +182,11 @@ body {
 }
 
 // ============================================
-// 4. LAYOUT — SIDEBAR / DRAWER
+// 5. LAYOUT — SIDEBAR / DRAWER
 // ============================================
 .erictech-drawer {
-  background: var(--color-neutral-50);
-  border-right: 1px solid var(--color-neutral-200);
+  background: var(--surface-elevated);
+  border-right: 1px solid var(--border-default);
 
   .erictech-nav-item {
     border-radius: var(--radius-md);
@@ -153,36 +198,43 @@ body {
     color: var(--text-secondary);
 
     .q-icon {
-      color: var(--color-neutral-500);
+      color: var(--text-muted);
     }
 
     &:hover {
-      background: var(--color-neutral-100);
+      background: var(--surface-subtle);
       color: var(--text-primary);
 
-      .q-icon { color: var(--color-primary-500); }
+      .q-icon {
+        color: var(--color-primary-500);
+      }
     }
   }
 
   .erictech-nav-active {
     border-left: 4px solid var(--color-accent-500) !important;
-    background: var(--color-accent-100) !important;
+    background: var(--color-accent-soft) !important;
     color: var(--color-primary-800) !important;
     font-weight: 600;
 
-    .q-icon { color: var(--color-accent-500) !important; }
+    .q-icon {
+      color: var(--color-accent-500) !important;
+    }
   }
 }
 
 // ============================================
-// 5. CARDS
+// 6. CARDS (Foursys: LG radius = 20px)
 // ============================================
 .q-card {
   border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-soft) !important;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-elevated);
 }
 
 // ============================================
-// 6. TABLE
+// 7. TABLE
 // ============================================
 .erictech-table {
   border-radius: var(--radius-md);
@@ -203,7 +255,7 @@ body {
     transition: background var(--transition-fast) ease;
 
     &:nth-child(even) {
-      background: var(--color-neutral-100);
+      background: var(--surface-subtle);
     }
 
     &:hover {
@@ -215,22 +267,23 @@ body {
     font-size: var(--text-body);
     color: var(--text-secondary);
     padding: var(--space-3) var(--space-4);
-    border-bottom: 1px solid var(--color-neutral-200);
+    border-bottom: 1px solid var(--border-default);
   }
 }
 
 // ============================================
-// 7. KPI CARDS
+// 8. KPI CARDS
 // ============================================
 .erictech-kpi-card {
   border-radius: var(--radius-lg) !important;
-  border: 1px solid var(--color-neutral-200);
-  background: var(--color-neutral-50);
+  border: 1px solid var(--border-soft) !important;
+  background: var(--surface-elevated) !important;
+  box-shadow: var(--shadow-soft) !important;
   transition: transform var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-hover) !important;
   }
 
   .text-h5 {
@@ -246,10 +299,10 @@ body {
 }
 
 // ============================================
-// 8. BUTTONS — Override Quasar
+// 9. BUTTONS (Foursys: Pill radius por padrão)
 // ============================================
 .q-btn {
-  border-radius: var(--radius-md) !important;
+  border-radius: var(--radius-pill) !important;
   font-weight: 500;
   text-transform: none;
   letter-spacing: 0.01em;
@@ -258,31 +311,47 @@ body {
   &:active {
     transform: scale(0.98);
   }
+
+  &.btn-brand-gradient {
+    background: var(--gradient-brand);
+    color: #FFFFFF;
+    border: none;
+
+    &:hover {
+      box-shadow: var(--shadow-hover);
+    }
+  }
 }
 
 // ============================================
-// 9. CHIPS (Status & Priority)
+// 10. CHIPS / BADGES (Foursys: Pill radius)
 // ============================================
 .q-chip {
-  border-radius: var(--radius-full) !important;
+  border-radius: var(--radius-pill) !important;
   font-weight: 500;
   font-size: var(--text-caption);
 }
 
 // ============================================
-// 10. INPUTS — Focus accent
+// 11. INPUTS (Foursys: LG radius = 20px)
 // ============================================
 .q-field--outlined .q-field__control {
-  border-radius: var(--radius-sm) !important;
+  border-radius: var(--radius-lg) !important;
+  border-color: var(--border-default) !important;
 
   &:hover::before {
     border-color: var(--color-primary-400) !important;
   }
 }
 
-.q-field--focused .q-field__control::after {
-  border-color: var(--color-accent-500) !important;
-  border-width: 2px !important;
+.q-field--focused .q-field__control {
+  border-radius: var(--radius-lg) !important;
+
+  &::after {
+    border-color: var(--color-accent-500) !important;
+    border-width: 2px !important;
+    border-radius: var(--radius-lg) !important;
+  }
 }
 
 .q-field--focused .q-field__label {
@@ -290,7 +359,7 @@ body {
 }
 
 // ============================================
-// 11. PAGE LAYOUT
+// 12. PAGE LAYOUT
 // ============================================
 .page-container {
   padding: var(--space-6);
@@ -306,7 +375,7 @@ body {
 }
 
 // ============================================
-// 12. BREADCRUMBS
+// 13. BREADCRUMBS
 // ============================================
 .q-breadcrumbs {
   font-size: var(--text-body-sm);
@@ -314,24 +383,25 @@ body {
 }
 
 // ============================================
-// 13. DIALOG
+// 14. DIALOG
 // ============================================
 .q-dialog .q-card {
   border-radius: var(--radius-lg) !important;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-hover) !important;
 }
 
 // ============================================
-// 14. AUTH CARD
+// 15. AUTH CARD
 // ============================================
 .auth-card {
-  border-radius: var(--radius-xl) !important;
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-hover) !important;
   overflow: hidden;
+  border: none !important;
 }
 
 .auth-card-header {
-  background: var(--color-primary-800);
+  background: var(--gradient-navy);
   color: white;
   text-align: center;
   padding: var(--space-8);
@@ -350,13 +420,13 @@ body {
 }
 
 // ============================================
-// 15. EMPTY STATES
+// 16. EMPTY STATES
 // ============================================
 .empty-state {
   padding: var(--space-12) var(--space-6);
 
   .q-icon {
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   .text-h6 {
@@ -370,24 +440,44 @@ body {
 }
 
 // ============================================
-// 16. CHART BARS (Dashboard)
+// 17. CHART BARS (Dashboard)
 // ============================================
-.chart-placeholder { min-height: 200px; }
-.chart-bars { display: flex; flex-direction: column; gap: var(--space-3); }
-.chart-bar-row { display: flex; align-items: center; gap: var(--space-3); }
-.chart-label { min-width: 90px; font-size: var(--text-body-sm); color: var(--text-muted); }
+.chart-placeholder {
+  min-height: 200px;
+}
+
+.chart-bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.chart-bar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.chart-label {
+  min-width: 90px;
+  font-size: var(--text-body-sm);
+  color: var(--text-muted);
+}
+
 .chart-bar-bg {
   flex: 1;
   height: 22px;
-  background: var(--color-neutral-200);
-  border-radius: var(--radius-full);
+  background: var(--border-default);
+  border-radius: var(--radius-pill);
   overflow: hidden;
 }
+
 .chart-bar-fill {
   height: 100%;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-pill);
   transition: width var(--transition-slow) ease;
 }
+
 .chart-value {
   min-width: 28px;
   font-weight: 600;
@@ -396,7 +486,7 @@ body {
 }
 
 // ============================================
-// 17. SCROLLBAR
+// 18. SCROLLBAR
 // ============================================
 ::-webkit-scrollbar {
   width: 6px;
@@ -404,22 +494,70 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-neutral-100);
+  background: var(--surface-subtle);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-neutral-300);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-pill);
 
   &:hover {
-    background: var(--color-neutral-500);
+    background: var(--text-muted);
   }
 }
 
 // ============================================
-// 18. SELECTION
+// 19. SELECTION
 // ============================================
 ::selection {
-  background: var(--color-accent-100);
+  background: var(--color-accent-soft);
   color: var(--color-primary-800);
+}
+
+// ============================================
+// 20. FOURSYS — COMPONENTES UTILITÁRIOS
+// ============================================
+
+// Surface classes
+.surface-primary    { background: var(--surface-primary) !important; }
+.surface-secondary  { background: var(--surface-secondary) !important; }
+.surface-elevated   { background: var(--surface-elevated) !important; }
+.surface-subtle     { background: var(--surface-subtle) !important; }
+
+// Gradient de marca (uso restrito: hero/landing)
+.gradient-brand {
+  background: var(--gradient-brand) !important;
+  color: #FFFFFF !important;
+}
+
+// Cards com hover suave (Foursys pattern)
+.card-interactive {
+  transition: transform var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover) !important;
+  }
+}
+
+// Badge de status alinhado ao DS
+.ds-badge {
+  border-radius: var(--radius-pill);
+  font-size: var(--text-caption);
+  font-weight: 500;
+  padding: 2px var(--space-2);
+  display: inline-flex;
+  align-items: center;
+}
+
+// Foursys — Input focus sem outline extra (ring-0)
+.q-field {
+  .q-field__native,
+  .q-field__input {
+    &:focus {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
 }

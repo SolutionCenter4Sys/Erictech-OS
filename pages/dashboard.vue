@@ -109,8 +109,16 @@ const statusBars = computed(() => {
   const counts: Record<string, number> = {}
   mockOrders.forEach(o => { counts[o.status] = (counts[o.status] ?? 0) + 1 })
   const total = mockOrders.length
-  const colors: Record<string, string> = { Draft: '#9CA3AF', Planned: '#3B82F6', Scheduled: '#F59E0B', InProgress: '#4CAF50', Completed: '#0D2137', Cancelled: '#EF4444' }
-  return Object.entries(counts).map(([label, count]) => ({ label, count, percent: total ? (count / total) * 100 : 0, color: colors[label] ?? '#9CA3AF' }))
+  // Cores alinhadas aos tokens Foursys (var(--status-*))
+  const colors: Record<string, string> = {
+    Draft: 'var(--status-draft)',
+    Planned: 'var(--status-planned)',
+    Scheduled: 'var(--status-scheduled)',
+    InProgress: 'var(--status-in-progress)',
+    Completed: 'var(--status-completed)',
+    Cancelled: 'var(--status-cancelled)',
+  }
+  return Object.entries(counts).map(([label, count]) => ({ label, count, percent: total ? (count / total) * 100 : 0, color: colors[label] ?? 'var(--status-draft)' }))
 })
 const recentOrders = computed(() => mockOrders.slice(0, 5))
 const recentColumns = [
@@ -121,8 +129,16 @@ const recentColumns = [
   { name: 'data', label: 'Data', field: 'data', align: 'left' as const },
 ]
 function getStatusColor(status: string) {
-  const map: Record<string, string> = { Draft: '#9CA3AF', Planned: '#3B82F6', Scheduled: '#F59E0B', InProgress: '#4CAF50', Completed: '#0D2137', Cancelled: '#EF4444' }
-  return map[status] ?? '#9CA3AF'
+  // Cores alinhadas às Quasar brand colors (nuxt.config.ts → Foursys DS)
+  const map: Record<string, string> = {
+    Draft: 'grey',
+    Planned: 'info',
+    Scheduled: 'warning',
+    InProgress: 'positive',
+    Completed: 'primary',
+    Cancelled: 'negative',
+  }
+  return map[status] ?? 'grey'
 }
 
 const loading = ref(true)
@@ -131,11 +147,5 @@ onMounted(() => {
 })
 </script>
 <style scoped lang="scss">
-.chart-placeholder { min-height: 200px; }
-.chart-bars { display: flex; flex-direction: column; gap: 12px; }
-.chart-bar-row { display: flex; align-items: center; gap: 12px; }
-.chart-label { min-width: 80px; font-size: 0.875rem; }
-.chart-bar-bg { flex: 1; height: 20px; background: #e5e7eb; border-radius: 4px; overflow: hidden; }
-.chart-bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
-.chart-value { min-width: 24px; font-weight: 600; font-size: 0.875rem; }
+/* Estilos locais delegados aos tokens globais de erictech.scss */
 </style>

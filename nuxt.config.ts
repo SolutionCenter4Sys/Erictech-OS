@@ -12,15 +12,16 @@ export default defineNuxtConfig({
     extras: ['mdi-v7'],
     plugins: ['Notify', 'Dialog'],
     config: {
+      // Cores alinhadas ao Foursys Design System (design-toolkit-17-12.md)
       brand: {
-        primary: '#0D2137',
-        secondary: '#4CAF50',
-        accent: '#4CAF50',
-        dark: '#0D2137',
-        positive: '#4CAF50',
-        negative: '#EF4444',
-        info: '#3B82F6',
-        warning: '#F59E0B',
+        primary: '#0D2137',    // Navy Erictech
+        secondary: '#18C964',  // Verde Erictech (alinhado Foursys accent)
+        accent: '#18C964',     // Verde Erictech
+        dark: '#0F172A',       // Foursys text-primary (dark surfaces)
+        positive: '#16A34A',   // Foursys success
+        negative: '#DC2626',   // Foursys error
+        info: '#2563EB',       // Foursys info
+        warning: '#F59E0B',    // Foursys warning (mantido)
       },
     },
   },

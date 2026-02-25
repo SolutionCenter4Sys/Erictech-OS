@@ -22,7 +22,7 @@
 .auth-background {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--color-primary-900) 0%, var(--color-primary-800) 40%, var(--color-primary-500) 100%);
+  background: var(--gradient-navy);
   z-index: 0;
 }
 
