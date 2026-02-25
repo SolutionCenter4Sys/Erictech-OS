@@ -31,5 +31,3 @@ echo  [*] Pressione Ctrl+C para encerrar.
 echo.
 
 call npm run dev
-
-pause

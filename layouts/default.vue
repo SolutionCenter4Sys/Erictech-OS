@@ -10,7 +10,7 @@
           aria-label="Menu"
           @click="drawer = !drawer"
         />
-        <QToolbarTitle class="text-weight-bold">
+        <QToolbarTitle class="text-weight-bold erictech-brand-title">
           ERICTECH
         </QToolbarTitle>
         <QSpace />
@@ -137,3 +137,17 @@ function setupShortcuts() {
 }
 setupShortcuts()
 </script>
+
+<style scoped lang="scss">
+// Brand title: branco puro no header com gradiente roxo→índigo
+.erictech-brand-title {
+  color: #FFFFFF;
+  letter-spacing: 0.1em;
+
+  // Ponto verde (accent) no final do nome — microdetalhe de identidade
+  &::after {
+    content: '.';
+    color: #18C964;
+  }
+}
+</style>

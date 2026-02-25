@@ -1,42 +1,53 @@
 // ============================================
 // Erictech — Design System Global Styles
-// Baseado no Foursys Design Toolkit (design-toolkit-17-12.md)
-// Tokens estruturais Foursys + Identidade de marca Erictech
+// APENAS 2 CORES ATIVAS (Foursys DS):
+//   Accent   → #18C964  (verde: foco, nav, links)
+//   Gradient → #9A1BFF → #7B1CE5 → #4F46E5 (header, auth, botões)
 // ============================================
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 // ============================================
-// 1. DESIGN TOKENS (CSS Custom Properties)
+// 1. DESIGN TOKENS
 // ============================================
 :root {
-  // --- Erictech Brand — Primary (Navy) ---
-  --color-primary-900: #061424;
-  --color-primary-800: #0D2137;
-  --color-primary-700: #143352;
-  --color-primary-500: #1B3A5C;
-  --color-primary-400: #2A5A8C;
-  --color-primary-100: #E8EEF4;
-  --color-primary-soft: #F1F5F9;
+  // ── Foursys: as 2 cores ativas ───────────────
+  --accent:          #18C964;
+  --accent-dark:     #16A34A;
+  --accent-light:    #4ADE80;
+  --accent-soft:     #E6FDF1;
 
-  // --- Erictech Brand — Accent (Verde, alinhado Foursys) ---
-  --color-accent-600: #16A34A;
-  --color-accent-500: #18C964;
-  --color-accent-400: #4ADE80;
-  --color-accent-soft: #E6FDF1;
+  // Cor sólida primária = fim do gradiente (indigo-600)
+  --brand:           #4F46E5;
+  --brand-mid:       #7B1CE5;
+  --brand-start:     #9A1BFF;
+  --brand-soft:      #EEF2FF;   // indigo-50
 
-  // --- Foursys Surface System ---
-  --surface-primary: #F5F3FF;
+  // Gradiente brand: roxo → índigo
+  --gradient-brand:      linear-gradient(135deg, #9A1BFF 0%, #7B1CE5 40%, #4F46E5 100%);
+  --gradient-brand-dark: linear-gradient(135deg, #4C1D95 0%, #7C3AED 40%, #22C55E 100%);
+
+  // ── Paleta de índigo (derivada do gradiente) ──
+  --color-primary-900: #1E1B4B;   // indigo-950
+  --color-primary-800: #312E81;   // indigo-900
+  --color-primary-700: #3730A3;   // indigo-800
+  --color-primary-500: #4F46E5;   // indigo-600 (= --brand)
+  --color-primary-400: #6366F1;   // indigo-500
+  --color-primary-100: #E0E7FF;   // indigo-100
+  --color-primary-soft: #EEF2FF;  // indigo-50
+
+  // ── Foursys Surface System ────────────────────
+  --surface-primary:  #F5F3FF;    // lilás sutil (indigo-tinted)
   --surface-secondary: #FFFFFF;
-  --surface-elevated: #FFFFFF;
-  --surface-subtle: #F9FAFB;
+  --surface-elevated:  #FFFFFF;
+  --surface-subtle:    #F9FAFB;
 
-  // --- Foursys Border Tokens ---
+  // ── Foursys Border Tokens ─────────────────────
   --border-default: #E2E8F0;
-  --border-soft: #EEF2FF;
+  --border-soft:    #EEF2FF;
 
-  // --- Neutrals (legado — aliases para compatibilidade) ---
-  --color-neutral-50: #FFFFFF;
+  // ── Neutrals (aliases legado) ─────────────────
+  --color-neutral-50:  #FFFFFF;
   --color-neutral-100: var(--surface-subtle);
   --color-neutral-200: var(--border-default);
   --color-neutral-300: #CBD5E1;
@@ -44,118 +55,108 @@
   --color-neutral-700: #374151;
   --color-neutral-900: #0F172A;
 
-  // --- Foursys Text Tokens ---
-  --text-primary: #0F172A;
+  // ── Foursys Text ──────────────────────────────
+  --text-primary:   #0F172A;
   --text-secondary: #64748B;
-  --text-muted: #94A3B8;
-  --text-inverse: #FFFFFF;
-  --text-link: var(--color-accent-500);
+  --text-muted:     #94A3B8;
+  --text-inverse:   #FFFFFF;
+  --text-link:      var(--accent);  // verde
 
-  // --- Foursys Status ---
+  // ── Status semânticos ─────────────────────────
   --color-success: #16A34A;
   --color-warning: #F59E0B;
-  --color-error: #DC2626;
-  --color-info: #2563EB;
+  --color-error:   #DC2626;
+  --color-info:    #2563EB;
 
-  // --- Status OS ---
-  --status-draft: #94A3B8;
-  --status-planned: #2563EB;
-  --status-scheduled: #F59E0B;
-  --status-in-progress: #18C964;
-  --status-completed: #0D2137;
-  --status-cancelled: #DC2626;
-  --status-suspended: #8B5CF6;
+  // ── Status OS ────────────────────────────────
+  --status-draft:       #94A3B8;
+  --status-planned:     #2563EB;
+  --status-scheduled:   #F59E0B;
+  --status-in-progress: var(--accent);   // verde
+  --status-completed:   var(--brand);    // índigo
+  --status-cancelled:   #DC2626;
+  --status-suspended:   #8B5CF6;
 
-  // --- Priority ---
-  --priority-low: #64748B;
-  --priority-medium: #2563EB;
-  --priority-high: #F59E0B;
+  // ── Priority ──────────────────────────────────
+  --priority-low:      #64748B;
+  --priority-medium:   #2563EB;
+  --priority-high:     #F59E0B;
   --priority-critical: #DC2626;
 
-  // --- Typography (Inter — Foursys standard) ---
+  // ── Typography (Inter) ────────────────────────
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  --text-display: 2rem;
-  --text-h1: 1.5rem;
-  --text-h2: 1.25rem;
-  --text-h3: 1.125rem;
-  --text-body: 0.875rem;
-  --text-body-sm: 0.8125rem;
-  --text-caption: 0.75rem;
+  --text-display:  2rem;
+  --text-h1:       1.5rem;
+  --text-h2:       1.25rem;
+  --text-h3:       1.125rem;
+  --text-body:     0.875rem;
+  --text-body-sm:  0.8125rem;
+  --text-caption:  0.75rem;
   --text-overline: 0.6875rem;
 
-  // --- Foursys Spacing (4-8-12-16-24-32 scale) ---
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-8: 32px;
+  // ── Spacing (4-8-12-16-24-32) ────────────────
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
   --space-10: 40px;
   --space-12: 48px;
 
-  // --- Foursys Border Radius ---
-  // XS 6px | SM 8px | MD 12px | LG 20px | Pill 999px
-  --radius-xs: 6px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  // ── Border Radius (XS 6 | SM 8 | MD 12 | LG 20 | Pill 999) ──
+  --radius-xs:   6px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
   --radius-pill: 999px;
-  // legado
-  --radius-xl: 20px;
+  --radius-xl:   20px;
   --radius-full: 999px;
 
-  // --- Foursys Shadows ---
-  --shadow-soft: 0 10px 25px rgba(15, 23, 42, 0.06);
+  // ── Shadows ──────────────────────────────────
+  --shadow-soft:  0 10px 25px rgba(15, 23, 42, 0.06);
   --shadow-hover: 0 18px 45px rgba(15, 23, 42, 0.10);
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
-  --shadow-lg: var(--shadow-soft);
-  --shadow-glow: 0 0 20px rgba(24, 201, 100, 0.18);
+  --shadow-sm:    0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md:    0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg:    var(--shadow-soft);
 
-  // --- Foursys Brand Gradient ---
-  --gradient-brand: linear-gradient(135deg, #9A1BFF 0%, #7B1CE5 40%, #4F46E5 100%);
-  --gradient-brand-dark: linear-gradient(135deg, #4C1D95 0%, #7C3AED 40%, #22C55E 100%);
-  --gradient-navy: linear-gradient(135deg, var(--color-primary-900) 0%, var(--color-primary-800) 40%, var(--color-primary-500) 100%);
-
-  // --- Z-Index ---
+  // ── Z-Index ───────────────────────────────────
   --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-modal: 300;
-  --z-tooltip: 400;
-  --z-toast: 500;
+  --z-sticky:   200;
+  --z-modal:    300;
+  --z-tooltip:  400;
+  --z-toast:    500;
 
-  // --- Transitions ---
-  --transition-fast: 150ms;
+  // ── Transitions ───────────────────────────────
+  --transition-fast:   150ms;
   --transition-normal: 200ms;
-  --transition-slow: 300ms;
+  --transition-slow:   300ms;
 }
 
 // ============================================
 // 2. DARK MODE
 // ============================================
 .body--dark {
-  --surface-primary: #111827;
+  --surface-primary:   #1E1B4B;
   --surface-secondary: #0B1120;
-  --surface-elevated: #0B1120;
-  --surface-subtle: #020617;
-  --border-default: #1E293B;
-  --border-soft: #1E293B;
-  --text-primary: #F9FAFB;
-  --text-secondary: #CBD5E1;
-  --text-muted: #64748B;
-  --text-inverse: #020617;
-  --color-accent-500: #22C55E;
-  --color-accent-soft: #052E16;
-  --color-neutral-100: var(--surface-subtle);
-  --color-neutral-200: var(--border-default);
-  --gradient-brand: var(--gradient-brand-dark);
+  --surface-elevated:  #0B1120;
+  --surface-subtle:    #020617;
+  --border-default:    #1E293B;
+  --border-soft:       #1E293B;
+  --text-primary:      #F9FAFB;
+  --text-secondary:    #CBD5E1;
+  --text-muted:        #64748B;
+  --text-inverse:      #020617;
+  --accent:            #22C55E;
+  --accent-soft:       #052E16;
+  --gradient-brand:    var(--gradient-brand-dark);
 }
 
 // ============================================
-// 3. GLOBAL RESET & BASE
+// 3. GLOBAL BASE
 // ============================================
 body {
   font-family: var(--font-sans);
@@ -167,22 +168,33 @@ body {
 }
 
 // ============================================
-// 4. LAYOUT — HEADER
+// 4. HEADER — Gradiente brand (#9A1BFF → #4F46E5)
 // ============================================
 .erictech-header {
-  background: var(--color-primary-800) !important;
+  background: var(--gradient-brand) !important;
   height: 64px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 16px rgba(79, 70, 229, 0.35) !important;
 
   .q-toolbar__title {
     font-weight: 700;
     letter-spacing: 0.08em;
     font-size: var(--text-h2);
+    color: var(--text-inverse);
+  }
+
+  .q-btn {
+    border-radius: var(--radius-pill) !important;
+    color: rgba(255, 255, 255, 0.85);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.12) !important;
+      color: #FFFFFF;
+    }
   }
 }
 
 // ============================================
-// 5. LAYOUT — SIDEBAR / DRAWER
+// 5. SIDEBAR — Accent verde para item ativo
 // ============================================
 .erictech-drawer {
   background: var(--surface-elevated);
@@ -193,38 +205,33 @@ body {
     margin-bottom: var(--space-1);
     padding: var(--space-2) var(--space-4);
     transition: all var(--transition-normal) ease;
-    border-left: 4px solid transparent;
+    border-left: 3px solid transparent;
     font-size: var(--text-body);
     color: var(--text-secondary);
 
-    .q-icon {
-      color: var(--text-muted);
-    }
+    .q-icon { color: var(--text-muted); }
 
     &:hover {
-      background: var(--surface-subtle);
-      color: var(--text-primary);
+      background: var(--surface-primary);
+      color: var(--brand);            // índigo no hover
 
-      .q-icon {
-        color: var(--color-primary-500);
-      }
+      .q-icon { color: var(--accent); } // verde no ícone
     }
   }
 
+  // Item ativo: borda verde + fundo verde-soft
   .erictech-nav-active {
-    border-left: 4px solid var(--color-accent-500) !important;
-    background: var(--color-accent-soft) !important;
-    color: var(--color-primary-800) !important;
+    border-left: 3px solid var(--accent) !important;
+    background: var(--accent-soft) !important;
+    color: var(--accent-dark) !important;
     font-weight: 600;
 
-    .q-icon {
-      color: var(--color-accent-500) !important;
-    }
+    .q-icon { color: var(--accent) !important; }
   }
 }
 
 // ============================================
-// 6. CARDS (Foursys: LG radius = 20px)
+// 6. CARDS
 // ============================================
 .q-card {
   border-radius: var(--radius-lg) !important;
@@ -234,7 +241,7 @@ body {
 }
 
 // ============================================
-// 7. TABLE
+// 7. TABLE — Header com gradiente brand
 // ============================================
 .erictech-table {
   border-radius: var(--radius-md);
@@ -242,7 +249,7 @@ body {
 
   .q-table__top,
   thead th {
-    background: var(--color-primary-800) !important;
+    background: var(--gradient-brand) !important;
     color: white !important;
     font-weight: 600;
     font-size: var(--text-caption);
@@ -254,13 +261,9 @@ body {
   tbody tr {
     transition: background var(--transition-fast) ease;
 
-    &:nth-child(even) {
-      background: var(--surface-subtle);
-    }
+    &:nth-child(even) { background: var(--surface-subtle); }
 
-    &:hover {
-      background: var(--color-primary-100) !important;
-    }
+    &:hover { background: var(--brand-soft) !important; } // índigo-50 no hover
   }
 
   td {
@@ -284,6 +287,7 @@ body {
   &:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover) !important;
+    border-color: var(--accent) !important; // borda verde no hover
   }
 
   .text-h5 {
@@ -299,7 +303,10 @@ body {
 }
 
 // ============================================
-// 9. BUTTONS (Foursys: Pill radius por padrão)
+// 9. BUTTONS
+// ── Primary  → gradiente brand (roxo→índigo)
+// ── Accent   → verde #18C964
+// ── Pill radius em todos
 // ============================================
 .q-btn {
   border-radius: var(--radius-pill) !important;
@@ -308,23 +315,46 @@ body {
   letter-spacing: 0.01em;
   transition: all var(--transition-normal) ease;
 
-  &:active {
-    transform: scale(0.98);
-  }
-
-  &.btn-brand-gradient {
-    background: var(--gradient-brand);
-    color: #FFFFFF;
-    border: none;
+  // Botão primary (cor Quasar "primary") — usa gradiente brand
+  &.bg-primary {
+    background: var(--gradient-brand) !important;
+    color: var(--text-inverse) !important;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
 
     &:hover {
-      box-shadow: var(--shadow-hover);
+      filter: brightness(1.1);
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.5) !important;
     }
   }
+
+  // Botão accent/secondary — verde
+  &.bg-secondary,
+  &.bg-accent {
+    background: var(--accent) !important;
+    color: var(--text-inverse) !important;
+    box-shadow: 0 4px 14px rgba(24, 201, 100, 0.35);
+
+    &:hover {
+      background: var(--accent-dark) !important;
+      box-shadow: 0 8px 24px rgba(24, 201, 100, 0.45) !important;
+    }
+  }
+
+  // Outlined: borda brand
+  &.q-btn--outline {
+    border-color: var(--brand) !important;
+    color: var(--brand) !important;
+
+    &:hover {
+      background: var(--brand-soft) !important;
+    }
+  }
+
+  &:active { transform: scale(0.98); }
 }
 
 // ============================================
-// 10. CHIPS / BADGES (Foursys: Pill radius)
+// 10. CHIPS / BADGES — Pill
 // ============================================
 .q-chip {
   border-radius: var(--radius-pill) !important;
@@ -333,14 +363,15 @@ body {
 }
 
 // ============================================
-// 11. INPUTS (Foursys: LG radius = 20px)
+// 11. INPUTS — Foco accent verde
 // ============================================
 .q-field--outlined .q-field__control {
   border-radius: var(--radius-lg) !important;
   border-color: var(--border-default) !important;
+  background: var(--surface-elevated);
 
   &:hover::before {
-    border-color: var(--color-primary-400) !important;
+    border-color: var(--brand) !important; // índigo no hover
   }
 }
 
@@ -348,14 +379,14 @@ body {
   border-radius: var(--radius-lg) !important;
 
   &::after {
-    border-color: var(--color-accent-500) !important;
+    border-color: var(--accent) !important; // verde no foco
     border-width: 2px !important;
     border-radius: var(--radius-lg) !important;
   }
 }
 
 .q-field--focused .q-field__label {
-  color: var(--color-accent-500) !important;
+  color: var(--accent) !important; // verde no label focado
 }
 
 // ============================================
@@ -370,7 +401,7 @@ body {
   font-family: var(--font-sans);
   font-weight: 700;
   font-size: var(--text-display);
-  color: var(--color-primary-800);
+  color: var(--text-primary);
   line-height: 1.2;
 }
 
@@ -380,6 +411,9 @@ body {
 .q-breadcrumbs {
   font-size: var(--text-body-sm);
   color: var(--text-muted);
+
+  // Link de breadcrumb com verde
+  a { color: var(--accent) !important; }
 }
 
 // ============================================
@@ -391,7 +425,7 @@ body {
 }
 
 // ============================================
-// 15. AUTH CARD
+// 15. AUTH CARD — Header com gradiente brand
 // ============================================
 .auth-card {
   border-radius: var(--radius-lg) !important;
@@ -401,7 +435,7 @@ body {
 }
 
 .auth-card-header {
-  background: var(--gradient-navy);
+  background: var(--gradient-brand); // roxo → índigo
   color: white;
   text-align: center;
   padding: var(--space-8);
@@ -425,26 +459,20 @@ body {
 .empty-state {
   padding: var(--space-12) var(--space-6);
 
-  .q-icon {
-    opacity: 0.5;
-  }
+  .q-icon { opacity: 0.5; }
 
   .text-h6 {
     font-weight: 600;
     color: var(--text-secondary);
   }
 
-  .text-body2 {
-    color: var(--text-muted);
-  }
+  .text-body2 { color: var(--text-muted); }
 }
 
 // ============================================
-// 17. CHART BARS (Dashboard)
+// 17. CHART BARS — verde nos itens "em andamento"
 // ============================================
-.chart-placeholder {
-  min-height: 200px;
-}
+.chart-placeholder { min-height: 200px; }
 
 .chart-bars {
   display: flex;
@@ -493,44 +521,41 @@ body {
   height: 6px;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--surface-subtle);
-}
+::-webkit-scrollbar-track { background: var(--surface-subtle); }
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-neutral-300);
   border-radius: var(--radius-pill);
 
-  &:hover {
-    background: var(--text-muted);
-  }
+  &:hover { background: var(--text-muted); }
 }
 
 // ============================================
-// 19. SELECTION
+// 19. SELECTION — verde suave
 // ============================================
 ::selection {
-  background: var(--color-accent-soft);
-  color: var(--color-primary-800);
+  background: var(--accent-soft);
+  color: var(--accent-dark);
 }
 
 // ============================================
-// 20. FOURSYS — COMPONENTES UTILITÁRIOS
+// 20. UTILITÁRIOS
 // ============================================
+.surface-primary   { background: var(--surface-primary) !important; }
+.surface-secondary { background: var(--surface-secondary) !important; }
+.surface-elevated  { background: var(--surface-elevated) !important; }
+.surface-subtle    { background: var(--surface-subtle) !important; }
 
-// Surface classes
-.surface-primary    { background: var(--surface-primary) !important; }
-.surface-secondary  { background: var(--surface-secondary) !important; }
-.surface-elevated   { background: var(--surface-elevated) !important; }
-.surface-subtle     { background: var(--surface-subtle) !important; }
-
-// Gradient de marca (uso restrito: hero/landing)
+// Gradiente brand aplicável em qualquer elemento
 .gradient-brand {
   background: var(--gradient-brand) !important;
   color: #FFFFFF !important;
 }
 
-// Cards com hover suave (Foursys pattern)
+// Accent verde em texto
+.text-accent { color: var(--accent) !important; }
+
+// Cards com hover interativo
 .card-interactive {
   transition: transform var(--transition-normal) ease, box-shadow var(--transition-normal) ease;
   cursor: pointer;
@@ -541,7 +566,7 @@ body {
   }
 }
 
-// Badge de status alinhado ao DS
+// Badge de status
 .ds-badge {
   border-radius: var(--radius-pill);
   font-size: var(--text-caption);
@@ -551,7 +576,7 @@ body {
   align-items: center;
 }
 
-// Foursys — Input focus sem outline extra (ring-0)
+// Input: sem outline extra no foco
 .q-field {
   .q-field__native,
   .q-field__input {

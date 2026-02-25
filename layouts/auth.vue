@@ -22,7 +22,8 @@
 .auth-background {
   position: absolute;
   inset: 0;
-  background: var(--gradient-navy);
+  // Foursys brand gradient: roxo→índigo (design-toolkit-17-12.md)
+  background: var(--gradient-brand);
   z-index: 0;
 }
 
