@@ -1,0 +1,24 @@
+{
+  "name": "erictech-frontend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "dependencies": {
+    "nuxt": "^3.14.0",
+    "quasar": "^2.14.0",
+    "nuxt-quasar-ui": "^2.1.0",
+    "@quasar/extras": "^1.16.0",
+    "pinia": "^2.1.0",
+    "@pinia/nuxt": "^0.5.0",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "sass": "^1.70.0",
+    "typescript": "^5.3.0"
+  }
+}
